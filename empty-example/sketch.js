@@ -1,5 +1,5 @@
 let animSpeed = 2;
-let arraySize = 6;
+let arraySize = 3;
 let circle = [];
 
 function setup()

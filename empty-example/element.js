@@ -1,13 +1,17 @@
 function Element(id, name)
 {
+  //Unique element-ID and element name from DB
   this.id    = id;
   this.name  = name;
 
+  //variables used to draw the arc
   this.x     = width / 2;
   this.y     = height / 2;
   this.s     = 350;
   this.start = 0;
   this.end   = 90;
+
+  //AngleWidth
   this.width = this.end - this.start
 
   this.borderColor = 255;
@@ -21,9 +25,6 @@ function Element(id, name)
   this.cooldown = 20;
   this.timer    = 0;
   this.selected = false;
-
-
-
 
 
   this.draw = function()
@@ -82,6 +83,12 @@ function Element(id, name)
   this.displayText = function()
   {
     let a = this.start + this.width * 0.5;
+    let dir = 1;
+    if (a > 90 && a < 270)
+    {
+      a = a - 180;
+      dir = -1;
+    }
     ts = this.width;
     push();
     noStroke();
@@ -95,7 +102,7 @@ function Element(id, name)
     textAlign(CENTER, CENTER);
     translate(this.x, this.y);
     rotate(a);
-    text(this.text, this.s / 3.5, 0);
+    text(this.text, this.s / 3.5 * dir, 0);
     pop();
   }
 
@@ -113,6 +120,11 @@ function Element(id, name)
       this.selected = false;
 
     }
+  }
+
+  this.initChildren = function()
+  {
+    //recursively pushing child elements into circle - Array
   }
 
 }
